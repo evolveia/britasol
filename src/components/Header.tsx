@@ -15,7 +15,7 @@ interface HeaderProps {
   onOpenQuoteModal: () => void;
 }
 
-// Crisp inline SVG flags matching user's reference exactly
+// Crisp inline SVG flags: Brasil (PT), EUA (EN), França (FR)
 export const FlagIcon: React.FC<{ code: Language; className?: string }> = ({
   code,
   className = 'w-5 h-3.5',
@@ -41,27 +41,36 @@ export const FlagIcon: React.FC<{ code: Language; className?: string }> = ({
     );
   }
   if (code === 'en') {
-    // United Kingdom / English (EN) 🇬🇧
+    // USA 🇺🇸 (EUA para inglês)
     return (
       <svg
         className={`${className} inline-block rounded-[2px] shadow-[0_0_1px_rgba(0,0,0,0.5)] flex-shrink-0`}
         viewBox="0 0 20 14"
         fill="none"
       >
-        <clipPath id="ukHeaderClip">
-          <rect width="20" height="14" rx="1" />
-        </clipPath>
-        <g clipPath="url(#ukHeaderClip)">
-          <rect width="20" height="14" fill="#012169" />
-          <path d="M0 0 L20 14 M20 0 L0 14" stroke="#FFFFFF" strokeWidth="3" />
-          <path d="M0 0 L20 14 M20 0 L0 14" stroke="#C8102E" strokeWidth="1.5" />
-          <path d="M10 0 V14 M0 7 H20" stroke="#FFFFFF" strokeWidth="4.5" />
-          <path d="M10 0 V14 M0 7 H20" stroke="#C8102E" strokeWidth="2.7" />
-        </g>
+        <rect width="20" height="14" fill="#B22234" />
+        <path
+          d="M0 1.077h20v1.077H0zM0 3.23h20v1.077H0zM0 5.385h20v1.077H0zM0 7.538h20v1.077H0zM0 9.692h20v1.077H0zM0 11.846h20v1.077H0z"
+          fill="#FFFFFF"
+        />
+        <rect width="8" height="7.538" fill="#3C3B6E" />
+        <circle cx="1.6" cy="1.5" r="0.45" fill="#FFFFFF" />
+        <circle cx="3.8" cy="1.5" r="0.45" fill="#FFFFFF" />
+        <circle cx="6.0" cy="1.5" r="0.45" fill="#FFFFFF" />
+        <circle cx="2.7" cy="2.8" r="0.45" fill="#FFFFFF" />
+        <circle cx="4.9" cy="2.8" r="0.45" fill="#FFFFFF" />
+        <circle cx="1.6" cy="4.1" r="0.45" fill="#FFFFFF" />
+        <circle cx="3.8" cy="4.1" r="0.45" fill="#FFFFFF" />
+        <circle cx="6.0" cy="4.1" r="0.45" fill="#FFFFFF" />
+        <circle cx="2.7" cy="5.4" r="0.45" fill="#FFFFFF" />
+        <circle cx="4.9" cy="5.4" r="0.45" fill="#FFFFFF" />
+        <circle cx="1.6" cy="6.6" r="0.45" fill="#FFFFFF" />
+        <circle cx="3.8" cy="6.6" r="0.45" fill="#FFFFFF" />
+        <circle cx="6.0" cy="6.6" r="0.45" fill="#FFFFFF" />
       </svg>
     );
   }
-  // France 🇫🇷
+  // France 🇫🇷 (França para francês)
   return (
     <svg
       className={`${className} inline-block rounded-[2px] shadow-[0_0_1px_rgba(0,0,0,0.5)] flex-shrink-0`}
@@ -106,23 +115,23 @@ export const Header: React.FC<HeaderProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Language options ordered as in reference screenshot (Français, English, Português - Spanish removed)
-  const languageOptions: { code: Language; name: string; labelCode: string }[] = [
-    { code: 'fr', name: 'Français', labelCode: 'FR' },
-    { code: 'en', name: 'English', labelCode: 'EN' },
-    { code: 'pt', name: 'Português', labelCode: 'PT' },
+  // Language options: Brasil (PT), EUA (EN), França (FR)
+  const languageOptions: { code: Language; country: string; langName: string }[] = [
+    { code: 'pt', country: 'Brasil', langName: 'Português' },
+    { code: 'en', country: 'EUA', langName: 'English' },
+    { code: 'fr', country: 'França', langName: 'Français' },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md py-2.5 border-b border-slate-200'
-          : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-3.5'
+          ? 'bg-white/95 backdrop-blur-md shadow-md py-2 border-b border-slate-200'
+          : 'bg-gradient-to-b from-black/85 via-black/45 to-transparent py-2.5 sm:py-3'
       }`}
     >
-      <div className="w-full max-w-[1700px] mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-2 lg:gap-4">
+      <div className="w-full max-w-[1720px] mx-auto px-2.5 sm:px-4 lg:px-4 xl:px-6">
+        <div className="flex items-center justify-between gap-1.5 lg:gap-2 xl:gap-3">
           
           {/* Logo with Orange Background (Exact orange of the logo, NO text beside it) */}
           <a
@@ -130,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex-shrink-0 group focus:outline-none"
             aria-label="BRITASOL Home"
           >
-            <div className="h-10 sm:h-11 px-2.5 py-1 rounded-xl bg-[#F95700] flex items-center justify-center shadow-md group-hover:brightness-105 transition-all">
+            <div className="h-9 sm:h-10 px-2 py-1 rounded-xl bg-[#F95700] flex items-center justify-center shadow-md group-hover:brightness-105 transition-all">
               <img
                 src="/assets/aistudio/logo_2389f1d9.jpeg"
                 alt="BRITASOL"
@@ -139,76 +148,76 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </a>
 
-          {/* Single-line Horizontal Desktop Navigation */}
-          <nav className="hidden lg:flex items-center justify-center gap-3.5 xl:gap-5 text-xs xl:text-sm font-semibold whitespace-nowrap">
+          {/* Single-line Responsive Horizontal Desktop Navigation */}
+          <nav className="hidden lg:flex items-center justify-center gap-1 lg:gap-1.5 xl:gap-2.5 2xl:gap-4 text-[11px] xl:text-[12px] 2xl:text-[13px] font-semibold whitespace-nowrap flex-shrink min-w-0">
             <a
               href="#quem-somos"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.about}
             </a>
             <a
               href="#produtos"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.products}
             </a>
             <a
               href="#antes-depois"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.beforeAfter}
             </a>
             <a
               href="#onde-aplicar"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.applications}
             </a>
             <a
               href="#modo-aplicacao"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.method}
             </a>
             <a
               href="#dados-tecnicos"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.engineering}
             </a>
             <a
               href="#calculadora"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.calculator}
             </a>
             <a
               href="#exportacao"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.export}
             </a>
             <a
               href="#contato"
-              className={`transition-colors py-1 hover:text-[#F95700] ${
-                isScrolled ? 'text-slate-700' : 'text-white/90 drop-shadow-sm'
+              className={`transition-colors px-1 py-1 rounded hover:text-[#F95700] ${
+                isScrolled ? 'text-slate-700' : 'text-white drop-shadow-sm'
               }`}
             >
               {t.nav.contact}
@@ -216,9 +225,9 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Right Action Cluster: Language Flag Dropdown + "Cotação" Button */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 xl:gap-2.5 flex-shrink-0">
             
-            {/* Language Selector matching screenshot UI */}
+            {/* Language Selector: Globe Icon + Country Flag + Chevron (Compact & Hoverable) */}
             <div
               ref={dropdownRef}
               className="relative"
@@ -227,7 +236,7 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <button
                 onClick={() => setLangDropdownOpen((prev) => !prev)}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all focus:outline-none border-2 ${
+                className={`flex items-center gap-1.5 px-2 py-1.5 rounded-xl text-xs font-bold transition-all focus:outline-none border-2 flex-shrink-0 ${
                   isScrolled
                     ? 'border-[#0B1E36] bg-white text-[#0B1E36] shadow-sm hover:bg-slate-50'
                     : 'border-white/60 bg-black/40 text-white backdrop-blur-sm hover:border-white'
@@ -236,29 +245,30 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-expanded={langDropdownOpen}
                 aria-label="Selecionar Idioma"
               >
-                <FlagIcon code={currentLang} className="w-5 h-3.5" />
-                <span className="tracking-wider uppercase text-xs">
+                <Globe className="w-3.5 h-3.5 text-[#F95700] flex-shrink-0" />
+                <FlagIcon code={currentLang} className="w-4 h-3 flex-shrink-0" />
+                <span className="uppercase text-[11px] font-bold tracking-wider hidden sm:inline">
                   {currentLang.toUpperCase()}
                 </span>
                 {langDropdownOpen ? (
-                  <ChevronUp className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <ChevronUp className="w-3 h-3 stroke-[2.5] flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <ChevronDown className="w-3 h-3 stroke-[2.5] flex-shrink-0" />
                 )}
               </button>
 
-              {/* Dropdown Menu matching user reference screenshot */}
+              {/* Dropdown Menu: Country Flags for Brasil, EUA, França */}
               {langDropdownOpen && (
-                <div className="absolute right-0 top-full pt-1.5 w-52 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                <div className="absolute right-0 top-full pt-1.5 w-48 sm:w-52 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="rounded-2xl bg-white border border-slate-200 shadow-2xl p-2 text-slate-800">
                     
-                    {/* Header */}
-                    <div className="px-3 py-2 text-[11px] uppercase font-bold text-slate-400 tracking-wider border-b border-slate-100 mb-1 flex items-center gap-1.5">
-                      <Globe className="w-3.5 h-3.5 text-slate-400" />
-                      <span>LANGUE / LANGUAGE</span>
+                    {/* Header with Globe */}
+                    <div className="px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 tracking-wider border-b border-slate-100 mb-1 flex items-center gap-1.5">
+                      <Globe className="w-3.5 h-3.5 text-[#F95700]" />
+                      <span>IDIOMA / LANGUAGE</span>
                     </div>
 
-                    {/* Options: FR, EN, PT (Spanish removed) */}
+                    {/* Country Options: Brasil 🇧🇷, EUA 🇺🇸, França 🇫🇷 */}
                     <div className="space-y-0.5">
                       {languageOptions.map((opt) => {
                         const isSelected = opt.code === currentLang;
@@ -277,17 +287,19 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center gap-2.5">
                               <FlagIcon code={opt.code} className="w-5 h-3.5" />
-                              <span className="leading-tight text-slate-800">
-                                {opt.name}
-                              </span>
-                              <span className="text-[11px] text-slate-400 font-normal">
-                                ({opt.labelCode})
-                              </span>
+                              <div className="flex flex-col text-left">
+                                <span className="leading-tight text-slate-900 font-bold text-xs">
+                                  {opt.country}
+                                </span>
+                                <span className="text-[10px] text-slate-500 font-normal">
+                                  {opt.langName}
+                                </span>
+                              </div>
                             </div>
 
-                            {/* Dot indicator for active item matching screenshot */}
+                            {/* Dot indicator for active item */}
                             {isSelected && (
-                              <span className="w-2.5 h-2.5 rounded-full bg-[#0B1E36] flex-shrink-0" />
+                              <span className="w-2 h-2 rounded-full bg-[#F95700] flex-shrink-0" />
                             )}
                           </button>
                         );
@@ -298,19 +310,20 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
 
-            {/* "Cotação" Button */}
+            {/* "Cotação" Button - Always fully visible, whitespace-nowrap, never truncated */}
             <button
               onClick={onOpenQuoteModal}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl btn-brita-orange text-xs sm:text-sm font-bold uppercase tracking-wider focus:outline-none shadow-md"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl btn-brita-orange text-xs font-bold uppercase tracking-wider focus:outline-none shadow-md flex-shrink-0 whitespace-nowrap"
+              title="Solicitar Cotação"
             >
-              <FileSpreadsheet className="w-3.5 h-3.5" />
+              <FileSpreadsheet className="w-3.5 h-3.5 flex-shrink-0" />
               <span>{t.nav.quoteButton}</span>
             </button>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className={`lg:hidden p-2 rounded-xl border focus:outline-none ${
+              className={`lg:hidden p-2 rounded-xl border focus:outline-none flex-shrink-0 ${
                 isScrolled
                   ? 'bg-slate-100 text-slate-800 border-slate-200'
                   : 'bg-black/40 text-white border-white/20'
@@ -394,7 +407,10 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 uppercase">Idioma:</span>
+            <span className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 text-[#F95700]" />
+              Idioma:
+            </span>
             <div className="flex gap-2">
               {languageOptions.map((opt) => (
                 <button
@@ -410,7 +426,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <FlagIcon code={opt.code} className="w-4 h-3" />
-                  <span>{opt.labelCode}</span>
+                  <span>{opt.country}</span>
                 </button>
               ))}
             </div>
