@@ -36,16 +36,16 @@ export const MethodSection: React.FC<MethodSectionProps> = ({ currentLang }) => 
   return (
     <section
       id="modo-aplicacao"
-      className="py-20 sm:py-24 relative overflow-hidden text-white bg-[#0B1E36]"
+      className="py-20 sm:py-24 relative overflow-hidden text-white bg-slate-950"
     >
-      {/* High-Contrast Gradient Dark Overlay with Seamless Background Image */}
+      {/* Background Image clearly visible with elegant dark gradient overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <img
           src="https://dynacal.com.br/wp-content/uploads/2026/04/pavimentacao.jpg"
-          alt=""
-          className="w-full h-full object-cover object-center opacity-25 mix-blend-luminosity"
+          alt="Pavimentação e Aplicação de Britasol"
+          className="w-full h-full object-cover object-center opacity-65"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1E36] via-[#0A1628]/95 to-[#070E1A]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/85 backdrop-blur-[1px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -59,7 +59,7 @@ export const MethodSection: React.FC<MethodSectionProps> = ({ currentLang }) => 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight font-heading">
             {t.method.title}
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
             {t.method.subtitle}
           </p>
         </div>
@@ -69,15 +69,15 @@ export const MethodSection: React.FC<MethodSectionProps> = ({ currentLang }) => 
           {t.method.steps.map((step, idx) => (
             <div
               key={step.step}
-              className="p-6 rounded-3xl bg-[#10243E]/90 border border-white/15 hover:border-[#F95700] transition-all duration-300 relative flex flex-col justify-between shadow-2xl group text-left hover:-translate-y-1 backdrop-blur-md"
+              className="p-6 rounded-3xl bg-slate-900/85 border border-white/20 hover:border-[#F95700] transition-all duration-300 relative flex flex-col justify-between shadow-2xl group text-left hover:-translate-y-1 backdrop-blur-md"
             >
               <div>
                 {/* Step Number & Icon */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl font-black text-[#F95700]/60 font-heading group-hover:text-[#F95700] transition-colors">
+                  <span className="text-3xl font-black text-[#F95700] font-heading">
                     {step.step}
                   </span>
-                  <div className="w-10 h-10 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shadow-inner">
+                  <div className="w-10 h-10 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center shadow-inner">
                     {getStepIcon(idx)}
                   </div>
                 </div>
