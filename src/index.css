@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brita-orange-600: #E04E00;
+    --brita-orange-500: #F95700;
+    --brita-orange-400: #FF7729;
+    --brita-orange-100: #FFF3EB;
+    
+    --brita-blue-900: #081B2B;
+    --brita-blue-800: #0D283E;
+    --brita-blue-600: #0284C7;
+    --brita-blue-500: #0EA5E9;
+    
+    --brita-green-600: #008746;
+    --brita-green-500: #00A859;
+    
+    --brita-slate-900: #0F172A;
+    --brita-slate-800: #1E293B;
+    --brita-slate-700: #334155;
+    --brita-slate-600: #475569;
+    --brita-slate-500: #64748B;
+    --brita-slate-200: #E2E8F0;
+    --brita-slate-100: #F1F5F9;
+    --brita-light-50: #F8FAFC;
+    --brita-white: #FFFFFF;
+  }
+
+  body {
+    background-color: var(--brita-white);
+    color: var(--brita-slate-900);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+/* Glassmorphism & custom utility classes */
+.glass-panel-card {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(249, 87, 0, 0.3);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Buttons */
+.btn-brita-orange {
+  background: linear-gradient(135deg, #F95700 0%, #E04E00 100%);
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(249, 87, 0, 0.3);
+}
+
+.btn-brita-orange:hover {
+  background: linear-gradient(135deg, #FF7729 0%, #F95700 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(249, 87, 0, 0.45);
+}
+
+.btn-outline-brita {
+  border: 1.5px solid rgba(249, 87, 0, 0.8);
+  color: #F95700;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-brita:hover {
+  background-color: #F95700;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(249, 87, 0, 0.3);
+}
+
+.btn-outline-white {
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F95700;
+}
+
+/* Animations */
+@keyframes pulseGlowOrange {
+  0%, 100% { box-shadow: 0 0 12px rgba(249, 87, 0, 0.4); }
+  50% { box-shadow: 0 0 28px rgba(249, 87, 0, 0.8); }
+}
+
+.animate-pulse-orange {
+  animation: pulseGlowOrange 3s infinite ease-in-out;
+}
+
+/* Hide scrollbar for carousel horizontal overflow */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

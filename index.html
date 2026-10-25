@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Silence Vite HMR WebSocket proxy disconnect warnings in AI Studio preview environments -->
+    <script>
+      (function() {
+        if (typeof window !== 'undefined') {
+          window.addEventListener('unhandledrejection', function(event) {
+            var reason = event.reason;
+            var msg = (reason && (reason.message || String(reason))) || '';
+            if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1 || msg.indexOf('vite') !== -1) {
+              event.preventDefault();
+            }
+          });
+        }
+      })();
+    </script>
+
+    <!-- Ensure window.fetch is writable and configurable so test executors and browser extensions can wrap/reassign fetch -->
+    <script>
+      (function() {
+        try {
+          var _origFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          var _activeFetch = _origFetch;
+          
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return _activeFetch;
+            },
+            set: function(fn) {
+              _activeFetch = fn;
+            }
+          });
+
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', {
+                configurable: true,
+                enumerable: true,
+                get: function() {
+                  return _activeFetch;
+                },
+                set: function(fn) {
+                  _activeFetch = fn;
+                }
+              });
+            } catch (_errProto) {}
+          }
+        } catch (_err) {}
+      })();
+    </script>
+
+    <title>BRITASOL | Soluções Poliméricas para Estabilização de Solo & Reabilitação Responsável</title>
+    
+    <!-- Meta Description & Theme -->
+    <meta name="description" content="A BRITASOL é uma empresa especializada em Soluções Poliméricas para Estabilização de Solo. Atuamos com tecnologia inovadora com grafeno para transformar estradas de terra, solos instáveis e áreas degradadas em superfícies firmes, duráveis e sustentáveis." />
+    <meta name="keywords" content="Britasol, Estabilização de Solo, Polímeros de Solo, Reabilitação Responsável, Dynacal, Grafeno, Redução de Poeira, Solo Arenoso, Solo Argiloso, CBR Pavimentação, Estradas Rurais, Pavimentação Ecológica, Exportação de Polímero, Pátios Industriais" />
+    <meta name="author" content="BRITASOL" />
+    <meta name="theme-color" content="#F95700" />
+    <meta name="application-name" content="Britasol" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+
+    <!-- Open Graph Protocol (WhatsApp, Facebook, LinkedIn, Telegram) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="BRITASOL - Reabilitação Responsável" />
+    <meta property="og:title" content="BRITASOL | Soluções Poliméricas para Estabilização de Solo" />
+    <meta property="og:description" content="A BRITASOL é especialista em Soluções Poliméricas para Estabilização de Solo. Transforme estradas de terra e solos instáveis em superfícies firmes, ecológicas e duráveis com até 60% de economia." />
+    <meta property="og:image" content="/assets/aistudio/logo_2389f1d9.jpeg" />
+    <meta property="og:image:secure_url" content="https://dynacal.com.br/wp-content/uploads/2026/04/bg-home-novo-webp.webp" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="BRITASOL - Reabilitação Responsável em Estabilização de Solo" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BRITASOL | Estabilização de Solo com Grafeno" />
+    <meta name="twitter:description" content="Tecnologia polimérica inovadora para estradas rurais, pátios industriais, mineração e obras viárias. Menor custo e maior durabilidade." />
+    <meta name="twitter:image" content="https://dynacal.com.br/wp-content/uploads/2026/04/bg-home-novo-webp.webp" />
+
+    <!-- Fonts: Inter & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-white text-slate-900 font-['Inter',sans-serif] antialiased selection:bg-[#F95700] selection:text-[#FFFFFF]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

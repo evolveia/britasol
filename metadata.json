@@ -1,0 +1,8 @@
+{
+  "name": "Britasol",
+  "description": "A BRITASOL é uma empresa especializada em Soluções Poliméricas para Estabilização de Solo. Atuamos com tecnologia inovadora para transformar estradas de terra, solos instáveis e áreas degradadas em superfícies firmes, duráveis e sustentáveis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
