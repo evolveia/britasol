@@ -36,13 +36,17 @@ export const MethodSection: React.FC<MethodSectionProps> = ({ currentLang }) => 
   return (
     <section
       id="modo-aplicacao"
-      className="py-20 sm:py-24 relative overflow-hidden text-white border-b border-white/10 bg-cover bg-center bg-no-repeat bg-fixed"
-      style={{
-        backgroundImage: `url('https://dynacal.com.br/wp-content/uploads/2026/04/pavimentacao.jpg')`,
-      }}
+      className="py-20 sm:py-24 relative overflow-hidden text-white bg-[#0B1E36]"
     >
-      {/* High-Contrast Gradient Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#070E1A]/95 via-[#0A1628]/90 to-[#070E1A]/95 backdrop-blur-[2px]" />
+      {/* High-Contrast Gradient Dark Overlay with Seamless Background Image */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <img
+          src="https://dynacal.com.br/wp-content/uploads/2026/04/pavimentacao.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center opacity-25 mix-blend-luminosity"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1E36] via-[#0A1628]/95 to-[#070E1A]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -65,7 +69,7 @@ export const MethodSection: React.FC<MethodSectionProps> = ({ currentLang }) => 
           {t.method.steps.map((step, idx) => (
             <div
               key={step.step}
-              className="p-6 rounded-3xl bg-[#10243E]/85 border border-white/15 hover:border-[#F95700] transition-all duration-300 relative flex flex-col justify-between shadow-2xl group text-left hover:-translate-y-1 backdrop-blur-md"
+              className="p-6 rounded-3xl bg-[#10243E]/90 border border-white/15 hover:border-[#F95700] transition-all duration-300 relative flex flex-col justify-between shadow-2xl group text-left hover:-translate-y-1 backdrop-blur-md"
             >
               <div>
                 {/* Step Number & Icon */}

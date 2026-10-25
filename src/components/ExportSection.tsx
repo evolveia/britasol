@@ -18,13 +18,17 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ currentLang }) => 
   return (
     <section
       id="exportacao"
-      className="py-20 sm:py-24 relative overflow-hidden text-white border-b border-white/10 bg-cover bg-center bg-no-repeat bg-fixed"
-      style={{
-        backgroundImage: `url('https://dynacal.com.br/wp-content/uploads/2026/04/destaque-222.jpg')`,
-      }}
+      className="py-20 sm:py-24 relative overflow-hidden text-white bg-[#0B1E36]"
     >
-      {/* High-Contrast Gradient Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#070E1A]/95 via-[#0A1628]/90 to-[#070E1A]/95 backdrop-blur-[2px]" />
+      {/* Seamless full-bleed background image with zero gap and continuous color flow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <img
+          src="https://dynacal.com.br/wp-content/uploads/2026/04/destaque-222.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center opacity-25 mix-blend-luminosity"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1E36] via-[#0A1628]/95 to-[#0B1E36]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -49,7 +53,7 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ currentLang }) => 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           
           {/* Card 1: Worldwide Supply to Any Country */}
-          <div className="p-8 rounded-3xl bg-[#10243E]/85 border border-white/15 hover:border-[#F95700] transition-all shadow-2xl flex flex-col justify-between backdrop-blur-md">
+          <div className="p-8 rounded-3xl bg-[#10243E]/90 border border-white/15 hover:border-[#F95700] transition-all shadow-2xl flex flex-col justify-between backdrop-blur-md">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-[#F95700]/20 border border-[#F95700]/30 flex items-center justify-center text-[#F95700] mb-6">
                 <Globe2 className="w-6 h-6" />
@@ -67,7 +71,7 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ currentLang }) => 
           </div>
 
           {/* Card 2: Packaging & Ocean Containers */}
-          <div className="p-8 rounded-3xl bg-[#10243E]/85 border border-white/15 hover:border-[#38BDF8] transition-all shadow-2xl flex flex-col justify-between backdrop-blur-md">
+          <div className="p-8 rounded-3xl bg-[#10243E]/90 border border-white/15 hover:border-[#38BDF8] transition-all shadow-2xl flex flex-col justify-between backdrop-blur-md">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-[#0077C8]/20 border border-[#0077C8]/30 flex items-center justify-center text-[#38BDF8] mb-6">
                 <Ship className="w-6 h-6" />
@@ -86,7 +90,7 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ currentLang }) => 
           </div>
 
           {/* Card 3: Multilingual Engineering & Lab Testing */}
-          <div className="p-8 rounded-3xl bg-[#10243E]/85 border border-white/15 hover:border-[#00A859] transition-all shadow-2xl flex flex-col justify-between backdrop-blur-md">
+          <div className="p-8 rounded-3xl bg-[#10243E]/90 border border-white/15 hover:border-[#00A859] transition-all shadow-2xl flex flex-col justify-between backdrop-blur-md">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-[#00A859]/20 border border-[#00A859]/30 flex items-center justify-center text-[#00A859] mb-6">
                 <FileCheck2 className="w-6 h-6" />
