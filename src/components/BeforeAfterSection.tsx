@@ -3,10 +3,7 @@ import {
   Sliders,
   CheckCircle2,
   XCircle,
-  Maximize2,
-  Columns,
-  Layers,
-  ArrowRight
+  Columns
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/britasolData';
 
@@ -17,23 +14,24 @@ interface BeforeAfterSectionProps {
 
 export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
   currentLang,
-  onOpenQuoteModal,
 }) => {
   const t = TRANSLATIONS[currentLang];
   const [sliderPos, setSliderPos] = useState(50);
-  const [viewMode, setViewMode] = useState<'side-by-side' | 'slider' | 'infographic'>('side-by-side');
-  const [showFullInfographic, setShowFullInfographic] = useState(false);
+  const [viewMode, setViewMode] = useState<'slider' | 'side-by-side'>('slider');
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPos(Number(e.target.value));
   };
+
+  const antesImage = 'https://raw.githubusercontent.com/evolveia/britasol/refs/heads/main/public/assets/aistudio/antes01.jpg';
+  const depoisImage = 'https://raw.githubusercontent.com/evolveia/britasol/refs/heads/main/public/assets/aistudio/depois01.jpg';
 
   return (
     <section id="antes-depois" className="py-20 sm:py-24 bg-white text-slate-800 relative overflow-hidden border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-[#F95700]/30 text-xs font-bold text-[#F95700] uppercase tracking-wider mb-4 shadow-sm">
             <Sliders className="w-4 h-4 text-[#F95700]" />
             <span>{t.beforeAfter.badge}</span>
@@ -45,20 +43,8 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
             {t.beforeAfter.subtitle}
           </p>
 
-          {/* Interactive Mode Switcher */}
+          {/* Interactive Mode Switcher: Slider or Side-by-Side (Infográfico removed) */}
           <div className="mt-8 inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200 shadow-sm flex-wrap justify-center gap-1">
-            <button
-              onClick={() => setViewMode('side-by-side')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all flex items-center gap-1.5 ${
-                viewMode === 'side-by-side'
-                  ? 'bg-[#F95700] text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              <Columns className="w-4 h-4" />
-              <span>Duas Imagens (Antes e Depois)</span>
-            </button>
-
             <button
               onClick={() => setViewMode('slider')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all flex items-center gap-1.5 ${
@@ -72,20 +58,93 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
             </button>
 
             <button
-              onClick={() => setViewMode('infographic')}
+              onClick={() => setViewMode('side-by-side')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all flex items-center gap-1.5 ${
-                viewMode === 'infographic'
+                viewMode === 'side-by-side'
                   ? 'bg-[#F95700] text-white shadow-md'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Layers className="w-4 h-4" />
-              <span>Infográfico Técnico Oficial</span>
+              <Columns className="w-4 h-4" />
+              <span>Duas Imagens (Antes e Depois)</span>
             </button>
           </div>
         </div>
 
-        {/* Mode 1: Distinct TWO Images (Antes vs Depois) */}
+        {/* Mode 1: Real Interactive Before / After Slider */}
+        {viewMode === 'slider' && (
+          <div className="space-y-6">
+            <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border-2 border-[#F95700]/40 shadow-2xl bg-slate-950">
+              <div className="relative h-[340px] sm:h-[460px] md:h-[540px] select-none overflow-hidden">
+                
+                {/* Background Layer: DEPOIS (After) Image */}
+                <img
+                  src={depoisImage}
+                  alt="Depois - Solo Estabilizado com Britasol"
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  draggable={false}
+                />
+
+                {/* Floating "DEPOIS" Badge */}
+                <div className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-xl bg-black/80 border border-[#00A859] text-[#00A859] text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md pointer-events-none">
+                  {t.beforeAfter.afterLabel}
+                </div>
+
+                {/* Foreground Layer: ANTES (Before) Image clipped by sliderPos */}
+                <div
+                  className="absolute inset-0 overflow-hidden pointer-events-none"
+                  style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+                >
+                  <img
+                    src={antesImage}
+                    alt="Antes - Solo Instável com buracos e erosão"
+                    className="absolute inset-0 w-full h-full object-cover max-w-none"
+                    draggable={false}
+                  />
+
+                  {/* Floating "ANTES" Badge */}
+                  <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-xl bg-black/80 border border-red-500 text-red-400 text-xs font-black uppercase tracking-wider backdrop-blur-md shadow-md">
+                    {t.beforeAfter.beforeLabel}
+                  </div>
+                </div>
+
+                {/* Vertical Divider Bar */}
+                <div
+                  className="absolute top-0 bottom-0 w-1 bg-[#F95700] z-20 pointer-events-none shadow-[0_0_16px_rgba(249,87,0,0.9)]"
+                  style={{ left: `${sliderPos}%` }}
+                >
+                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#F95700] border-2 border-white flex items-center justify-center text-white shadow-2xl">
+                    <Sliders className="w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Range Input controller */}
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={sliderPos}
+                  onChange={handleSliderChange}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30"
+                  aria-label="Controle deslizante de Antes e Depois"
+                />
+              </div>
+
+              {/* Bottom Control Bar */}
+              <div className="p-4 bg-slate-900 text-slate-300 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs border-t border-slate-800">
+                <span className="font-semibold text-[#F95700] flex items-center gap-1.5">
+                  <Sliders className="w-3.5 h-3.5" />
+                  <span>{t.beforeAfter.dragHint}</span>
+                </span>
+                <span className="font-mono text-slate-400 text-[11px] sm:text-xs text-center sm:text-right">
+                  {t.beforeAfter.summary}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mode 2: Distinct Two Images Side by Side */}
         {viewMode === 'side-by-side' && (
           <div className="space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -94,11 +153,10 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
               <div className="rounded-3xl overflow-hidden bg-slate-50 border-2 border-red-300 shadow-lg text-left flex flex-col justify-between">
                 <div>
                   <div className="relative h-64 sm:h-72 overflow-hidden bg-slate-900">
-                    {/* Visual representative of unpaved road with deep ruts, holes and dust */}
                     <img
-                      src="/assets/aistudio/04_d8cac31c.jpeg"
+                      src={antesImage}
                       alt="Antes - Solo Instável com buracos e erosão"
-                      className="w-full h-full object-cover object-left filter contrast-125 brightness-90"
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl bg-red-600 text-white text-xs font-black uppercase tracking-wider shadow-md">
                       {t.beforeAfter.beforeLabel}
@@ -131,7 +189,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
                 <div>
                   <div className="relative h-64 sm:h-72 overflow-hidden bg-slate-900">
                     <img
-                      src="https://dynacal.com.br/wp-content/uploads/2026/04/pavimentacao.jpg"
+                      src={depoisImage}
                       alt="Depois - Solo Estabilizado com Britasol"
                       className="w-full h-full object-cover"
                     />
@@ -161,94 +219,6 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
                 </div>
               </div>
 
-            </div>
-          </div>
-        )}
-
-        {/* Mode 2: Interactive Slider Overlay */}
-        {viewMode === 'slider' && (
-          <div className="space-y-8">
-            <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border-2 border-[#F95700]/40 shadow-xl bg-slate-950">
-              <div className="relative h-[360px] sm:h-[480px] md:h-[520px] select-none overflow-hidden">
-                <img
-                  src="/assets/aistudio/04_d8cac31c.jpeg"
-                  alt="Antes vs Depois Solo Estabilizado"
-                  className="w-full h-full object-cover"
-                />
-
-                <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-xl bg-black/80 border border-red-500 text-red-400 text-xs font-black uppercase tracking-wider backdrop-blur-md">
-                  {t.beforeAfter.beforeLabel}
-                </div>
-
-                <div className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-xl bg-black/80 border border-[#00A859] text-[#00A859] text-xs font-black uppercase tracking-wider backdrop-blur-md">
-                  {t.beforeAfter.afterLabel}
-                </div>
-
-                {/* Vertical Divider Overlay */}
-                <div
-                  className="absolute top-0 bottom-0 w-1 bg-[#F95700] z-20 pointer-events-none shadow-[0_0_15px_rgba(249,87,0,0.8)]"
-                  style={{ left: `${sliderPos}%` }}
-                >
-                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#F95700] border-2 border-white flex items-center justify-center text-white shadow-xl">
-                    <Sliders className="w-4 h-4" />
-                  </div>
-                </div>
-
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={sliderPos}
-                  onChange={handleSliderChange}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30"
-                  aria-label="Controle de Antes e Depois"
-                />
-              </div>
-
-              <div className="p-4 bg-slate-900 text-slate-300 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs border-t border-slate-800">
-                <span className="font-semibold text-[#F95700]">{t.beforeAfter.dragHint}</span>
-                <span className="font-mono text-slate-400">{t.beforeAfter.summary}</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Mode 3: Official Infographic */}
-        {viewMode === 'infographic' && (
-          <div className="max-w-4xl mx-auto space-y-4">
-            <div className="relative rounded-3xl overflow-hidden border-2 border-[#F95700]/30 shadow-xl bg-slate-900 group">
-              <img
-                src="/assets/aistudio/03_9043d0fd.jpeg"
-                alt="Infográfico Oficial Britasol"
-                className="w-full h-auto object-contain cursor-zoom-in"
-                onClick={() => setShowFullInfographic(true)}
-              />
-              <div className="absolute bottom-4 right-4 bg-black/80 px-3 py-1.5 rounded-xl text-xs text-white flex items-center gap-2 backdrop-blur-md">
-                <Maximize2 className="w-4 h-4 text-[#F95700]" />
-                <span>Clique para ampliar o infográfico</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Modal for full Infographic */}
-        {showFullInfographic && (
-          <div
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 backdrop-blur-md"
-            onClick={() => setShowFullInfographic(false)}
-          >
-            <div className="relative max-w-5xl max-h-[90vh] overflow-auto rounded-2xl border border-white/20">
-              <img
-                src="/assets/aistudio/03_9043d0fd.jpeg"
-                alt="Infográfico Britasol Completo"
-                className="w-full h-auto"
-              />
-              <button
-                onClick={() => setShowFullInfographic(false)}
-                className="absolute top-4 right-4 px-3 py-1.5 rounded-lg bg-[#F95700] text-white text-xs font-bold"
-              >
-                Fechar [ESC]
-              </button>
             </div>
           </div>
         )}
