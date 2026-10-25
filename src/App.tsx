@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -28,6 +28,46 @@ export default function App() {
     setQuotePrefill(context);
     setQuoteModalOpen(true);
   };
+
+  // Prevent right-click and dragging on images to block saving or opening in a new tab
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'IMG' ||
+          target.closest('img') ||
+          target.tagName === 'PICTURE' ||
+          target.classList.contains('bg-cover') ||
+          (target.style && target.style.backgroundImage && target.style.backgroundImage !== 'none') ||
+          target.closest('[style*="background-image"]'))
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const handleDragStart = (e: DragEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'IMG' ||
+          target.closest('img') ||
+          target.tagName === 'PICTURE')
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('dragstart', handleDragStart);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('dragstart', handleDragStart);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-['Inter',sans-serif] selection:bg-[#F95700] selection:text-[#FFFFFF] relative">

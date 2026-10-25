@@ -36,6 +36,14 @@
   h1, h2, h3, h4, .font-heading {
     font-family: 'Montserrat', sans-serif;
   }
+
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: auto;
+  }
 }
 
 /* Glassmorphism & custom utility classes */
