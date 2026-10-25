@@ -23,9 +23,8 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
     setSliderPos(Number(e.target.value));
   };
 
-  // High-reliability local asset fallback for before and after
-  const antesImage = '/assets/aistudio/04_d8cac31c.jpeg';
-  const depoisImage = 'https://dynacal.com.br/wp-content/uploads/2026/04/pavimentacao.jpg';
+  const antesImage = 'https://raw.githubusercontent.com/evolveia/britasol/refs/heads/main/public/assets/aistudio/antes01.jpg';
+  const depoisImage = 'https://raw.githubusercontent.com/evolveia/britasol/refs/heads/main/public/assets/aistudio/depois01.jpg';
 
   return (
     <section id="antes-depois" className="py-20 sm:py-24 bg-white text-slate-800 relative overflow-hidden border-b border-slate-100">
