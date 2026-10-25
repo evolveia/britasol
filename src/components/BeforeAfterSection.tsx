@@ -23,8 +23,9 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
     setSliderPos(Number(e.target.value));
   };
 
-  const antesImage = 'https://raw.githubusercontent.com/evolveia/britasol/refs/heads/main/public/assets/aistudio/antes01.jpg';
-  const depoisImage = 'https://raw.githubusercontent.com/evolveia/britasol/refs/heads/main/public/assets/aistudio/depois01.jpg';
+  // High-reliability local asset fallback for before and after
+  const antesImage = '/assets/aistudio/04_d8cac31c.jpeg';
+  const depoisImage = 'https://dynacal.com.br/wp-content/uploads/2026/04/pavimentacao.jpg';
 
   return (
     <section id="antes-depois" className="py-20 sm:py-24 bg-white text-slate-800 relative overflow-hidden border-b border-slate-100">
@@ -43,7 +44,7 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
             {t.beforeAfter.subtitle}
           </p>
 
-          {/* Interactive Mode Switcher: Slider or Side-by-Side (Infográfico removed) */}
+          {/* Interactive Mode Switcher: Slider or Side-by-Side */}
           <div className="mt-8 inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200 shadow-sm flex-wrap justify-center gap-1">
             <button
               onClick={() => setViewMode('slider')}
